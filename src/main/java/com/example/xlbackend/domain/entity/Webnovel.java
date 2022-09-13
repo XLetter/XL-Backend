@@ -14,18 +14,11 @@ public class Webnovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long webnovelId;
-
     private Long writerId;
-
     private String title;
-
     private String thumbnailUrl;
-
     private String genre;
-
     private String summary;
-
     private Short type;
-
     private Integer count;
 }

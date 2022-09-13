@@ -18,4 +18,13 @@ public class UserService {
         LoginDto loginDto = user.map(LoginDto::new).orElse(null);
         return loginDto;
     }
+
+    public LoginDto register(String address, String nickname) {
+        User user = User.builder()
+                .address(address)
+                .nickname(nickname)
+                .writerFlag(false).build();
+        LoginDto loginDto = LoginDto.builder().user(userRepository.save(user)).build();
+        return loginDto;
+    }
 }

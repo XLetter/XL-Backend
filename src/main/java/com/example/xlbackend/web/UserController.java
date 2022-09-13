@@ -1,19 +1,25 @@
 package com.example.xlbackend.web;
 
+import com.example.xlbackend.domain.entity.User;
 import com.example.xlbackend.service.UserService;
 import com.example.xlbackend.web.dto.LoginDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.java.Log;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("api/users/login/{address}")
+    @GetMapping("apis/users/login/{address}")
     public LoginDto login(@PathVariable String address) {
         return userService.findByAddress(address);
+    }
+
+    @PostMapping("apis/users/register")
+    public LoginDto register(@RequestParam String address, @RequestParam String nickname) {
+        LoginDto loginDto = userService.register(address, nickname);
+        return loginDto;
     }
 }
