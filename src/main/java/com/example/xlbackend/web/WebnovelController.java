@@ -18,7 +18,6 @@ import java.util.Optional;
 @RestController
 public class WebnovelController {
     private final WebnovelService webnovelService;
-    private final WebnovelRepository repository;
 
     @GetMapping("apis/webnovel")
     public List<WebnovelDto> getWebnovelList(@RequestParam(required = false) Short type, @RequestParam(required = false) String genre) {
