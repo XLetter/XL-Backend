@@ -3,6 +3,7 @@ package com.example.xlbackend.domain.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Entity
