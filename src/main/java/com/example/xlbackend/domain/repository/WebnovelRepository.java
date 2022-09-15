@@ -20,5 +20,5 @@ public interface WebnovelRepository extends JpaRepository<Webnovel, String> {
     @Query("select distinct w from Webnovel w join fetch w.writer where w.type = :type and w.genre = :genre")
     List<Webnovel> findAllWebnovelsByTypeAndGenre(@Param("type") Short type, @Param("genre") String genre);
 
-    Webnovel findByWebnovelId(Long id);
+    Webnovel findByWebnovelId(Long webnovelId);
 }

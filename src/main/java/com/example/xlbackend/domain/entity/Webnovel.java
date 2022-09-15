@@ -23,4 +23,11 @@ public class Webnovel {
     private String summary;
     private Short type;
     private Integer count;
+
+    public void incrementCount() {
+        this.count += 1;
+    }
+    public void decrementCount() {
+        this.count -= 1;
+    }
 }

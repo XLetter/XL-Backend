@@ -1,23 +1,23 @@
 package com.example.xlbackend.web;
 
-import com.example.xlbackend.domain.entity.Webnovel;
-import com.example.xlbackend.domain.repository.WebnovelRepository;
+import com.example.xlbackend.domain.entity.Bookmark;
+import com.example.xlbackend.service.BookmarkService;
 import com.example.xlbackend.service.WebnovelService;
+import com.example.xlbackend.web.dto.BookmarkDto;
 import com.example.xlbackend.web.dto.WebnovelDetailDto;
 import com.example.xlbackend.web.dto.WebnovelDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
 public class WebnovelController {
     private final WebnovelService webnovelService;
+    private final BookmarkService bookmarkService;
 
     @GetMapping("apis/webnovel")
     public List<WebnovelDto> getWebnovelList(@RequestParam(required = false) Short type, @RequestParam(required = false) String genre) {
@@ -27,12 +27,24 @@ public class WebnovelController {
             return webnovelService.getWebnovelListByType(type);
         }
         return webnovelService.getWebnovelListByTypeAndGenre(type, genre);
-
     }
 
     @GetMapping("apis/webnovel/{webnovel_id}")
     public WebnovelDetailDto getWebnovelDetails(@PathVariable Long webnovel_id) {
         return webnovelService.getWebnovelDetails(webnovel_id);
+    }
+
+    @PostMapping("apis/webnovel/bookmark")
+    public ResponseEntity<Object> addBookmark(@RequestBody BookmarkDto request) {
+        String status = "";
+        Bookmark bookmark = bookmarkService.checkExist(request.getWebnovelId(), request.getUserId());
+        if (bookmark == null) {
+            status = bookmarkService.insertBookmark(request.getWebnovelId(), request.getUserId());
+            webnovelService.incrementCount(request.getWebnovelId());
+        } else {
+            status = bookmarkService.updateBookmark(bookmark);
+        }
+        return ResponseEntity.ok().body(status);
     }
 
 }

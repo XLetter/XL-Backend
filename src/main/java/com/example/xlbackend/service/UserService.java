@@ -5,6 +5,7 @@ import com.example.xlbackend.domain.repository.UserRepository;
 import com.example.xlbackend.web.dto.LoginDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -12,13 +13,14 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
+    @Transactional(readOnly = true)
     public LoginDto findByAddress(String address) {
         Optional<User> user = userRepository.findByAddress(address);
         LoginDto loginDto = user.map(LoginDto::new).orElse(null);
         return loginDto;
     }
 
+    @Transactional
     public LoginDto register(String address, String nickname) {
         User user = User.builder()
                 .address(address)
