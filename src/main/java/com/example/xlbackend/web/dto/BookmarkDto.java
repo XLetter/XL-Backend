@@ -1,9 +1,2 @@
-package com.example.xlbackend.web.dto;
-
-import lombok.Getter;
-
-@Getter
-public class BookmarkDto {
-    private Long webnovelId;
-    private Long userId;
+package com.example.xlbackend.web.dto;public class BookmarkDto {
 }

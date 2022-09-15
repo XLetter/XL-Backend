@@ -3,6 +3,7 @@ package com.example.xlbackend.service;
 import com.example.xlbackend.domain.entity.User;
 import com.example.xlbackend.domain.repository.UserRepository;
 import com.example.xlbackend.web.dto.LoginDto;
+import com.example.xlbackend.web.dto.MyPageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,12 @@ public class UserService {
         Optional<User> user = userRepository.findByAddress(address);
         LoginDto loginDto = user.map(LoginDto::new).orElse(null);
         return loginDto;
+    }
+
+    public MyPageDto findById(Long userId) {
+        Optional<User> user = userRepository.findByUserId(userId);
+        MyPageDto myPageDto = user.map(MyPageDto::new).orElse(null);
+        return myPageDto;
     }
 
     @Transactional
