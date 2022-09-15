@@ -3,11 +3,10 @@ package com.example.xlbackend.web;
 import com.example.xlbackend.domain.entity.Bookmark;
 import com.example.xlbackend.service.BookmarkService;
 import com.example.xlbackend.service.WebnovelService;
-import com.example.xlbackend.web.dto.BookmarkDto;
+import com.example.xlbackend.web.dto.BookmarkInputDto;
 import com.example.xlbackend.web.dto.WebnovelDetailDto;
 import com.example.xlbackend.web.dto.WebnovelDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +34,7 @@ public class WebnovelController {
     }
 
     @PostMapping("apis/webnovel/bookmark")
-    public ResponseEntity<Object> addBookmark(@RequestBody BookmarkDto request) {
+    public ResponseEntity<Object> addBookmark(@RequestBody BookmarkInputDto request) {
         String status = "";
         Bookmark bookmark = bookmarkService.checkExist(request.getWebnovelId(), request.getUserId());
         if (bookmark == null) {
