@@ -25,4 +25,9 @@ public class User {
         this.nickname = nickname;
         this.writerFlag = writerFlag;
     }
+
+    public void updateUserInfo(String nickname, String profile) {
+        this.nickname = nickname;
+        this.profile = profile;
+    }
 }

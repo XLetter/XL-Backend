@@ -36,4 +36,13 @@ public class UserService {
         LoginDto loginDto = LoginDto.builder().user(userRepository.save(user)).build();
         return loginDto;
     }
+
+    @Transactional
+    public String updateUserInfo(Long userId, String profile, String nickname) throws Exception {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new Exception());
+        user.updateUserInfo(nickname, profile);
+        userRepository.save(user);
+        return "success";
+    }
 }
