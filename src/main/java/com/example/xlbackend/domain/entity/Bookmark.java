@@ -14,19 +14,15 @@ public class Bookmark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookmarkId;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "webnovel_id")
-//    private Webnovel webnovel;
-
-    private Long webnovelId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "webnovel_id")
+    private Webnovel webnovel;
     private Long userId;
     private Boolean deleteFlag;
 
-
-
     @Builder
-    public Bookmark(Long webnovelId, Long userId, Boolean deleteFlag) {
-        this.webnovelId = webnovelId;
+    public Bookmark(Webnovel webnovel, Long userId, Boolean deleteFlag) {
+        this.webnovel = webnovel;
         this.userId = userId;
         this.deleteFlag = deleteFlag;
     }

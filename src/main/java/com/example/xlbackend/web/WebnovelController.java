@@ -28,6 +28,16 @@ public class WebnovelController {
         return webnovelService.getWebnovelListByTypeAndGenre(type, genre);
     }
 
+    @GetMapping("apis/webnovel/bookmark")
+    public List<WebnovelDto> getWebnovelBookmarkList(@RequestParam Long userId, @RequestParam(required = false) Short type, @RequestParam(required = false) String genre) {
+        if (type == null) {
+            return bookmarkService.findBookmark(userId);
+        } else if (genre == null) {
+            return bookmarkService.findBookmarkByType(userId, type);
+        }
+        return bookmarkService.findBookmarkByTypeAndGenre(userId, type, genre);
+    }
+
     @GetMapping("apis/webnovel/{webnovel_id}")
     public WebnovelDetailDto getWebnovelDetails(@PathVariable Long webnovel_id) {
         return webnovelService.getWebnovelDetails(webnovel_id);
