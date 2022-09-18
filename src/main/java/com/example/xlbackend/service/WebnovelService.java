@@ -37,10 +37,10 @@ public class WebnovelService {
     }
     @Transactional(readOnly = true)
     public WebnovelDetailDto getWebnovelDetails(Long webnovelId) {
-        String summary = webnovelRepository.findByWebnovelId(webnovelId).getSummary();
+        Webnovel webnovel = webnovelRepository.findByWebnovelId(webnovelId);
         List<EpisodeDto> episodes = episodeRepository.findAllByWebnovelId(webnovelId).stream()
                 .map(EpisodeDto::new).collect(Collectors.toList());
-        return WebnovelDetailDto.builder().summary(summary).episodeList(episodes).build();
+        return WebnovelDetailDto.builder().webnovel(webnovel).episodeList(episodes).build();
     }
     @Transactional
     public String incrementCount(Long webnovelId) {

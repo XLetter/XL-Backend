@@ -23,6 +23,7 @@ public class Webnovel {
     private String summary;
     private Short type;
     private Integer count;
+    private String illustrationWrtier;
 
     public void incrementCount() {
         this.count += 1;
