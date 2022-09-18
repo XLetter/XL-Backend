@@ -11,4 +11,5 @@ public interface EpisodeRepository extends JpaRepository<Episode, String> {
 //    @Query("select e from Episode e join fetch e.webnovel w where w = :webnovelId")
 //    List<Episode> findAllEpisodes(@Param("webnovelId") Long webnovelId);
     List<Episode> findAllByWebnovelId(Long id);
+    Episode findByWebnovelIdAndEpisodeId(Long webnovelId, Long episodeId);
 }

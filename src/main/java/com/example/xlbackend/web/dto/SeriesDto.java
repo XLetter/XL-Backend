@@ -1,5 +1,6 @@
 package com.example.xlbackend.web.dto;
 
+import com.example.xlbackend.domain.entity.Episode;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,10 +14,10 @@ public class SeriesDto {
     private List<CommentDto> comments;
 
     @Builder
-    public SeriesDto(Long episodeId, String message, String contents, List<CommentDto> comments) {
-        this.episodeId = episodeId;
-        this.message = message;
-        this.contents = contents;
+    public SeriesDto(Episode episode, List<CommentDto> comments) {
+        this.episodeId = episode.getEpisodeId();
+        this.message = episode.getMessage();
+        this.contents = episode.getContents();
         this.comments = comments;
     }
 }

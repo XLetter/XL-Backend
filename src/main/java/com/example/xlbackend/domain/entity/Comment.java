@@ -15,14 +15,9 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
-
     private Long episodeId;
-
     private String nickname;
-
     private String contents;
-
     private Timestamp writeDate;
-
     private Boolean deleteFlag;
 }
