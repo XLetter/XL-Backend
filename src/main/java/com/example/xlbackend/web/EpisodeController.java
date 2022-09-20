@@ -1,6 +1,7 @@
 package com.example.xlbackend.web;
 
 import com.example.xlbackend.service.EpisodeService;
+import com.example.xlbackend.web.dto.OriginalDto;
 import com.example.xlbackend.web.dto.SeriesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,5 +16,10 @@ public class EpisodeController {
     @GetMapping("apis/webnovel/series/{webnovelId}/{episodeId}")
     public SeriesDto getSeries(@PathVariable Long webnovelId, @PathVariable Long episodeId) {
         return episodeService.getSeriesEpisode(webnovelId, episodeId);
+    }
+
+    @GetMapping("apis/webnovel/original/{webnovelId}/{episodeId}")
+    public OriginalDto getOriginals(@PathVariable Long webnovelId, @PathVariable Long episodeId) {
+        return episodeService.getOriginalEpisode(webnovelId, episodeId);
     }
 }

@@ -2,10 +2,7 @@ package com.example.xlbackend.domain.entity;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -15,7 +12,9 @@ public class ChoiceOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long optionId;
 
-    private Long choideId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "choice_id")
+    private Choice choice;
 
     private String key;
 
