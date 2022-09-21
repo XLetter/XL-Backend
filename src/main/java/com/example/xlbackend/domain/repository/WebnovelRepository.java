@@ -21,4 +21,6 @@ public interface WebnovelRepository extends JpaRepository<Webnovel, String> {
     List<Webnovel> findAllWebnovelsByTypeAndGenre(@Param("type") Short type, @Param("genre") String genre);
 
     Webnovel findByWebnovelId(Long webnovelId);
+
+    List<Webnovel> findByTitleContaining(String keyword);
 }

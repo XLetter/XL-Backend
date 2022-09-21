@@ -43,6 +43,11 @@ public class WebnovelController {
         return webnovelService.getWebnovelDetails(webnovel_id);
     }
 
+    @GetMapping("apis/webnovel/search")
+    public List<WebnovelDto> searchWebnovel(@RequestParam String keyword) {
+        return webnovelService.serachWebnovelByTitle(keyword);
+    }
+
     @PostMapping("apis/webnovel/bookmark")
     public ResponseEntity<Object> addBookmark(@RequestBody BookmarkInputDto request) {
         String status = "";
@@ -52,6 +57,7 @@ public class WebnovelController {
             webnovelService.incrementCount(request.getWebnovelId());
         } else {
             status = bookmarkService.updateBookmark(bookmark);
+            webnovelService.decrementCount(request.getWebnovelId());
         }
         return ResponseEntity.ok().body(status);
     }

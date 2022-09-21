@@ -21,6 +21,7 @@ public class UserService {
         return loginDto;
     }
 
+    @Transactional(readOnly = true)
     public MyPageDto findById(Long userId) {
         Optional<User> user = userRepository.findByUserId(userId);
         MyPageDto myPageDto = user.map(MyPageDto::new).orElse(null);

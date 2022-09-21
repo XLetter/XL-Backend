@@ -36,6 +36,11 @@ public class WebnovelService {
                 .stream().map(WebnovelDto::new).collect(Collectors.toList());
     }
     @Transactional(readOnly = true)
+    public List<WebnovelDto> serachWebnovelByTitle(String keyword) {
+        return webnovelRepository.findByTitleContaining(keyword)
+                .stream().map(WebnovelDto::new).collect(Collectors.toList());
+    }
+    @Transactional(readOnly = true)
     public WebnovelDetailDto getWebnovelDetails(Long webnovelId) {
         Webnovel webnovel = webnovelRepository.findByWebnovelId(webnovelId);
         List<EpisodeDto> episodes = episodeRepository.findAllByWebnovelId(webnovelId).stream()
