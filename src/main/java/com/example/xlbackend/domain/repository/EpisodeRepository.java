@@ -10,6 +10,10 @@ import java.util.List;
 public interface EpisodeRepository extends JpaRepository<Episode, String> {
 //    @Query("select e from Episode e join fetch e.webnovel w where w = :webnovelId")
 //    List<Episode> findAllEpisodes(@Param("webnovelId") Long webnovelId);
-    List<Episode> findAllByWebnovelId(Long id);
-    Episode findByWebnovelIdAndEpisodeId(Long webnovelId, Long episodeId);
+
+    @Query("select e from Episode e join fetch e.webnovel w where w.webnovelId = :webnovelId")
+    List<Episode> findAllByWebnovelId(@Param("webnovelId") Long webnovelId);
+    @Query("select e from Episode e join fetch e.webnovel w " +
+            "where w.webnovelId = :webnovelId and e.episodeId = :episodeId")
+    Episode findByWebnovelIdAndEpisodeId(@Param("webnovelId") Long webnovelId, @Param("episodeId") Long episodeId);
 }

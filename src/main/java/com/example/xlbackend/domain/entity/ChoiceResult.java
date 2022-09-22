@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
@@ -17,13 +14,17 @@ public class ChoiceResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long resultId;
-    private Long choiceId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cohice_id")
+    private Choice choice;
+//    @Column(name = "choice_id")
+//    private Long choiceId;
     private Long userId;
     private Long optionId;
 
     @Builder
-    public ChoiceResult(Long choiceId, Long userId, Long optionId) {
-        this.choiceId = choiceId;
+    public ChoiceResult(Choice choice, Long userId, Long optionId) {
+        this.choice = choice;
         this.userId = userId;
         this.optionId = optionId;
     }

@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface ChoiceRepository extends JpaRepository<Choice, String> {
     @Query("select distinct c from Choice c left join fetch c.options " +
-            "where c.episodeId = :episodeId")
+            "where c.episode.episodeId = :episodeId")
     List<Choice> findAllByEpisodeId(@Param("episodeId") Long episodeId);
+    Choice findByChoiceId(Long choiceId);
 }

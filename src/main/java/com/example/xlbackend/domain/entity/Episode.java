@@ -12,7 +12,10 @@ public class Episode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long episodeId;
-    private Long webnovelId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "webnovel_id")
+    private Webnovel webnovel;
+//    private Long webnovelId;
     private String episodeTitle;
     private String contents;
     private Timestamp uploadDate;

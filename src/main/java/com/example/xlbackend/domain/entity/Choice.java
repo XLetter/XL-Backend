@@ -17,7 +17,10 @@ public class Choice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "choice_id")
     private Long choiceId;
-    private Long episodeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "episode_id")
+    private Episode episode;
+//    private Long episodeId;
     private String question;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "choice_id")
