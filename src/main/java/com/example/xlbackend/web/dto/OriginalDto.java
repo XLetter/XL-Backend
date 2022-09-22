@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 public class OriginalDto {
     private Long episodeId;
+    private Integer episode;
     private String message;
     private String contents;
     private List<ChoiceDto> choices;
@@ -17,6 +18,7 @@ public class OriginalDto {
     @Builder
     public OriginalDto(Episode episode, List<CommentDto> comments, List<ChoiceDto> choices) {
         this.episodeId = episode.getEpisodeId();
+        this.episode = episode.getEpisode();
         this.message = episode.getMessage();
         this.contents = episode.getContents();
         this.comments = comments;

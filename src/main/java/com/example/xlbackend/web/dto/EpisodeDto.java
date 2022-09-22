@@ -11,11 +11,13 @@ public class EpisodeDto {
     private Long episodeId;
     private String episodeTitle;
     private Timestamp uploadDate;
+    private Integer episode;
 
     @Builder
     public EpisodeDto(Episode episode) {
         this.episodeId = episode.getEpisodeId();
         this.episodeTitle = episode.getEpisodeTitle();
         this.uploadDate = episode.getUploadDate();
+        this.episode = episode.getEpisode();
     }
 }
