@@ -15,7 +15,7 @@ public class ChoiceResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long resultId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cohice_id")
+    @JoinColumn(name = "choice_id")
     private Choice choice;
 //    @Column(name = "choice_id")
 //    private Long choiceId;
