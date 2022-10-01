@@ -23,4 +23,6 @@ public interface WebnovelRepository extends JpaRepository<Webnovel, String> {
     Webnovel findByWebnovelId(Long webnovelId);
 
     List<Webnovel> findByTitleContaining(String keyword);
+
+    List<Webnovel> findTop3ByOrderByWebnovelIdAsc();
 }

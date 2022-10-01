@@ -3,6 +3,7 @@ package com.example.xlbackend.web;
 import com.example.xlbackend.domain.entity.Bookmark;
 import com.example.xlbackend.service.BookmarkService;
 import com.example.xlbackend.service.WebnovelService;
+import com.example.xlbackend.web.dto.BannerDto;
 import com.example.xlbackend.web.dto.BookmarkInputDto;
 import com.example.xlbackend.web.dto.WebnovelDetailDto;
 import com.example.xlbackend.web.dto.WebnovelDto;
@@ -26,6 +27,11 @@ public class WebnovelController {
             return webnovelService.getWebnovelListByType(type);
         }
         return webnovelService.getWebnovelListByTypeAndGenre(type, genre);
+    }
+
+    @GetMapping("apis/webnovel/banner")
+    public List<BannerDto> getBannerList() {
+        return webnovelService.getBannerList();
     }
 
     @GetMapping("apis/webnovel/bookmark")

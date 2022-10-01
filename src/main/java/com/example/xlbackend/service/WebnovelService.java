@@ -4,6 +4,7 @@ import com.example.xlbackend.domain.entity.Episode;
 import com.example.xlbackend.domain.entity.Webnovel;
 import com.example.xlbackend.domain.repository.EpisodeRepository;
 import com.example.xlbackend.domain.repository.WebnovelRepository;
+import com.example.xlbackend.web.dto.BannerDto;
 import com.example.xlbackend.web.dto.EpisodeDto;
 import com.example.xlbackend.web.dto.WebnovelDetailDto;
 import com.example.xlbackend.web.dto.WebnovelDto;
@@ -19,6 +20,11 @@ import java.util.stream.Collectors;
 public class WebnovelService {
     private final WebnovelRepository webnovelRepository;
     private final EpisodeRepository episodeRepository;
+
+    @Transactional(readOnly = true)
+    public List<BannerDto> getBannerList() {
+        return webnovelRepository.findTop3ByOrderByWebnovelIdAsc().stream().map(BannerDto::new).collect(Collectors.toList());
+    }
 
     @Transactional(readOnly = true)
     public List<WebnovelDto> getWebnovelList() {

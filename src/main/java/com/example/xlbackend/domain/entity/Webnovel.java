@@ -25,6 +25,7 @@ public class Webnovel {
     private Integer count;
     @Column(name = "illustration_writer")
     private String illustrationWrtier;
+    private String bannerUrl;
 
     public void incrementCount() {
         this.count += 1;
